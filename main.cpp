@@ -86,18 +86,76 @@ void time_conversion_1(string hour){
             cout << "00:" << tmp << endl;
         }
         else{
-            cout << "pase" << endl;
-            string tmp = hour.substr(0,7);
+            string tmp = hour.substr(0,8);
             cout << tmp << endl;
         }
     }
-    
+    cout << endl;
+}
+
+
+void time_conversion_2(string time){
+    //this algorithm is more efficient because it does not go over the string every time it needs to compare.
+    //I though a switch would be faster but I did not find a way to use strings in the cases.
+    string end = time.substr(8,2);
+    string hour = time.substr(0,2);
+    string tmp = time.substr(3,5);
+    //cout << end << endl;
+    if (end == "AM"){
+        //cout << "Es AM" << endl;
+        if (hour == "12"){
+            cout << "00:" << tmp << endl;
+        }
+        else{
+            string tmp2 = time.substr(0,8);
+        }
+    }
+    else if(end == "PM"){
+        //cout << "Es PM" << endl;
+        if (hour == "01"){
+            cout << "13:" << tmp << endl;
+        }
+        else if (hour == "02"){
+            cout << "14:" << tmp << endl;
+        }
+        else if (hour == "03"){
+            cout << "15:" << tmp << endl;
+        }
+        else if (hour == "04"){
+            cout << "16:" << tmp << endl;
+        }
+        else if (hour == "05"){
+            cout << "17:" << tmp << endl;
+        }
+        else if (hour == "06"){
+            cout << "18:" << tmp << endl;
+        }
+        else if (hour == "07"){
+            cout << "19:" << tmp << endl;
+        }
+        else if (hour == "08"){
+            cout << "20:" << tmp << endl;
+        }
+        else if (hour == "09"){
+            cout << "21:" << tmp << endl;
+        }
+        else if (hour == "10"){
+            cout << "22:" << tmp << endl;
+        }
+        else if (hour == "11"){
+            cout << "23:" << tmp << endl;
+        }
+    }
+    else{
+        cout << "Entrada Incorrecta" << endl;
+    }
 }
 
 int main(){
     int trip1[3] = {1,2,3};
     int trip2[3] = {3,2,1};
     //fast_triplets(trip1,trip2);
-    time_conversion_1("01:45:30AM");
+    //time_conversion_1("01:45:30AM");
+    time_conversion_2("10:45:30PM");
     return 0;
 }
