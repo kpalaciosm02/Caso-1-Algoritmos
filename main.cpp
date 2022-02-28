@@ -151,11 +151,55 @@ void time_conversion_2(string time){
     }
 }
 
+int subarray_division_1(int chocolate[5], int day, int month){
+    int index_result[5] = {0,0,0,0,0};
+    for (int i = 0; i < 6; i++){
+        int quantity = 0;
+        int sum = 0;
+        int counter = i;
+        while (quantity < month){
+            if (sum < month){
+                sum += chocolate[counter];
+            }
+            
+            //cout << sum << "->";
+            if (counter < 5){
+                counter++;
+            }
+            
+            quantity++;
+        }
+        //cout << endl << "Suma: " << sum << endl;
+        if (sum == month){
+            index_result[i] = 1;
+        }
+    }
+    cout << "Combinations: ";
+    for (int j = 0; j < 5; j++){
+        if (index_result[j] == 1 && j > 5 - day)
+            index_result[j] = 0;
+    }
+    int combinations = 0;
+    for (int i = 0; i < 5; i++){
+        //cout << index_result[i] << "->";
+        if (index_result[i] ==  1){
+            combinations++;
+        }
+    }
+    cout << combinations << endl;    
+}
+
+int efficient_subarray_division(){
+
+}
+
 int main(){
     int trip1[3] = {1,2,3};
     int trip2[3] = {3,2,1};
+    int chocolate[5] = {2,2,1,3,2};
     //fast_triplets(trip1,trip2);
     //time_conversion_1("01:45:30AM");
-    time_conversion_2("10:45:30PM");
+    //time_conversion_2("10:45:30PM");
+    subarray_division_1(chocolate,2,4);
     return 0;
 }
