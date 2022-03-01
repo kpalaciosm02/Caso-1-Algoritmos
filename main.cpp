@@ -189,8 +189,29 @@ int subarray_division_1(int chocolate[5], int day, int month){
     cout << combinations << endl;    
 }
 
-int efficient_subarray_division(){
-
+int efficient_subarray_division(int chocolate[5], int day, int month){
+    int combinations = 0;
+    int index_result[5] = {0,0,0,0,0};
+    for (int i = 0; i < 5 - day; i++){
+        int quantity = 0;
+        int sum = 0;
+        int counter = i;
+        while (quantity < month){
+            if (sum == month){
+                //cout << i << endl;
+                combinations++;
+                break;
+            }
+            else if (sum < month){
+                sum += chocolate[counter];
+            }
+            if (counter < month){
+                counter++;
+            }
+            quantity++;
+        }
+    }
+    cout << "Efficient Combinations: " << combinations << endl;
 }
 
 int main(){
@@ -200,6 +221,7 @@ int main(){
     //fast_triplets(trip1,trip2);
     //time_conversion_1("01:45:30AM");
     //time_conversion_2("10:45:30PM");
-    subarray_division_1(chocolate,2,4);
+    //subarray_division_1(chocolate,2,4);
+    //efficient_subarray_division(chocolate,2,4);
     return 0;
 }
