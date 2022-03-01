@@ -33,7 +33,7 @@ void time_conversion_1(string hour){
     //first try of time conversion
     int length = hour.length();
     if (hour[length-1] == 'M' && hour[length-2] == 'P'){
-        cout << "Si hay PM" << endl;
+        //cout << "Si hay PM" << endl;
         if (hour[0] == '0' && hour[1] == '1'){
             string tmp = hour.substr(3,5);
             cout << "13:" << tmp << endl;
@@ -80,7 +80,7 @@ void time_conversion_1(string hour){
         }
     }
     else{ //caso AM
-        cout << "No hay PM" << endl;
+        //cout << "No hay PM" << endl;
         if (hour[0] == '1' && hour[1] == '2'){
             string tmp = hour.substr(3,5);
             cout << "00:" << tmp << endl;
@@ -214,14 +214,59 @@ int efficient_subarray_division(int chocolate[5], int day, int month){
     cout << "Efficient Combinations: " << combinations << endl;
 }
 
+int count_substring_in_string(string full_string, string substring){
+    int counter = 0;
+    int string_lenght = full_string.length();
+    int substring_lenght = substring.length();
+    for (int i = 0; i < string_lenght-substring_lenght+1; i++){
+        string tmp =  full_string.substr(i,substring_lenght);
+        if (tmp == substring){
+            counter++;
+        }
+    }
+    cout << "Cantidad del substring: " << counter << endl;
+    return counter;
+}
+
+void minion_game(string full_string){
+    int string_length  =  full_string.length();
+    for (int i = 0; i < string_length; i++){
+        for (int j = string_length - 1 - i; j > 0; j--){
+            string substring = full_string.substr(i,j);
+            cout << substring << endl;
+        }
+    }
+}
+
 int main(){
     int trip1[3] = {1,2,3};
     int trip2[3] = {3,2,1};
+    int trip3[3] = {4,5,6};
+    int trip4[3] = {6,5,4};
     int chocolate[5] = {2,2,1,3,2};
-    //fast_triplets(trip1,trip2);
-    //time_conversion_1("01:45:30AM");
-    //time_conversion_2("10:45:30PM");
-    //subarray_division_1(chocolate,2,4);
-    //efficient_subarray_division(chocolate,2,4);
+    cout << "------Pruebas triplets-----" << endl;
+    cout <<  "Este es solo el algoritmo rápido que me salió, no se me ocurrió ninguno más lento." << endl;
+    fast_triplets(trip1,trip2);
+    fast_triplets(trip3,trip4);
+    cout << "--------Prueba de conversión de tiempo--------" << endl;
+    cout << "El tiempo de recorrido de este mejoró al cambiar la manera en la que se buscaban coincidencias." << endl;
+    time_conversion_1("01:45:30AM");
+    time_conversion_2("01:45:30AM");
+    cout <<  "Segundo test de conversión de tiempo." << endl;
+    time_conversion_1("10:37:30PM");
+    time_conversion_2("10:37:30PM");
+    cout << "-------Pruebas de Subarray Division-------" << endl;
+    cout << "El primero tiene varios for loop y un montón de condicionales, el segundo tiene menos for loops y menos condicionales." << endl;
+    subarray_division_1(chocolate,2,4);
+    efficient_subarray_division(chocolate,2,4);
+    cout << "Segunda prueba de Subarray Division" << endl;
+    subarray_division_1(chocolate,3,5);
+    efficient_subarray_division(chocolate,3,5);
+    cout << "-------Prebas de minion game-------" << endl;
+    cout << "De acá en adelante no está completo, no tuve tiempo." << endl;
+    cout << "Función que cuenta cuantas veces aparece un string dentro de otro" << endl;
+    count_substring_in_string("abcabcabc abc","abc");
+    cout << "Primeras pruebas de usar la función anterior para buscar todas las posibles combinaciones." << endl;
+    minion_game(" fabion");
     return 0;
 }
